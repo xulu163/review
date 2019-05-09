@@ -11,11 +11,16 @@ public class ReenterLockDemo {
 class Phone{
 
     public synchronized void sendSms(){
-        System.out.println( );
+        System.out.println("sendSms");
         sendMail();
     }
 
     public synchronized void sendMail(){
+        System.out.println();
         sendSms();
     }
+
+
+
+
 }

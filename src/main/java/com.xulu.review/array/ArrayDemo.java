@@ -23,14 +23,10 @@ public class ArrayDemo {
 
     /**
      * ArrayList是线程不安全的，Vector是线程安全的
-     */
-
-
-
-    /**
+     *
      * 1.故障现象：java.util.ConcurrentModificationException
      *
-     * 2. 导致原因：并发争抢修改导致
+     * 2.导致原因：并发争抢修改导致
      *
      * 3.解决方案：
      *      3.1使用Vector
