@@ -104,7 +104,7 @@ class MyResource{
         }
     }
 
-    public void stop() throws Exception{
+    public void stop() throws Exception {
         this.flag = false;
     }
 }
