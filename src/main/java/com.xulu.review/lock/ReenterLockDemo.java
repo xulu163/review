@@ -2,6 +2,13 @@ package com.xulu.review.lock;
 
 public class ReenterLockDemo {
 
+    /**
+     * ReenterLock与syncronized的区别
+     *
+     *
+     * @param args
+     */
+
     public static void main(String[] args){
 
     }
