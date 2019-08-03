@@ -10,31 +10,58 @@ import java.util.concurrent.CountDownLatch;
  */
 public class TestCountDownLatch {
 
-    public static void main(String[] args) {
-        final CountDownLatch latch = new CountDownLatch(5);
+    public static void main(String[] args) throws Exception{
+        CountDownLatch latch = new CountDownLatch(4);
+
+        for(int i = 1; i <= 4; i++){
+            new Thread(()->{
+               System.out.println(Thread.currentThread().getName()+"\t");
+               latch.countDown();
+            },SeasonEnum.forEach(i).getMsg()).start();
+        }
+        latch.await();
+        System.out.println(Thread.currentThread()+"\t 结束");
 
     }
 
 }
 
-class LatchDemo implements Runnable{
+enum SeasonEnum{
+    ONE(1,"春"),TWO(2,"夏"),THREE(3,"秋"),FOUR(4,"冬");
 
-    private CountDownLatch latch;
+    private int code;
+    private String msg;
 
-    public LatchDemo(CountDownLatch latch){
-        this.latch = latch;
+    public int getCode() {
+        return code;
     }
 
-    @Override
-    public void run() {
-        try{
-            for(int i = 0; i < 50000; i++){
-                if(i % 2 == 0){
-                    System.out.println();
-                }
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    SeasonEnum(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public static SeasonEnum forEach(int code){
+        SeasonEnum[] array = SeasonEnum.values();
+        for(SeasonEnum element : array){
+            if(code == element.getCode()){
+                return element;
             }
-        }finally {
-            latch.countDown();
         }
+        return null;
     }
+
+
 }

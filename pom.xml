@@ -25,27 +25,27 @@
         </dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-core -->
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>activemq-core</artifactId>
-			<version>5.4.1</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.apache.activemq</groupId>-->
+			<!--<artifactId>activemq-core</artifactId>-->
+			<!--<version>5.4.1</version>-->
+		<!--</dependency>-->
 
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.9.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jms</artifactId>
-			<version>4.3.23.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>activemq-pool</artifactId>
-			<version>5.15.9</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>com.fasterxml.jackson.core</groupId>-->
+			<!--<artifactId>jackson-databind</artifactId>-->
+			<!--<version>2.9.6</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework</groupId>-->
+			<!--<artifactId>spring-jms</artifactId>-->
+			<!--<version>4.3.23.RELEASE</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.apache.activemq</groupId>-->
+			<!--<artifactId>activemq-pool</artifactId>-->
+			<!--<version>5.15.9</version>-->
+		<!--</dependency>-->
 
 
 

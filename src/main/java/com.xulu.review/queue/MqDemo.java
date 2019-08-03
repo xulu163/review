@@ -1,8 +1,5 @@
 package com.xulu.review.queue;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
-
-import javax.jms.*;
 
 /**
  * @author xulu  E-mail:java_xul@163.com
@@ -15,82 +12,82 @@ public class MqDemo {
 
     private static final String queue_name = "queue_01";
 
-    public void createProducer() throws Exception{
-        //创建连接工厂
-        ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(url);
-        //创建连接
-        Connection conn = factory.createConnection();
-        conn.start();
-        //创建会话
-        Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        //创建目的地
-        Queue queue = session.createQueue(queue_name);
-        MessageProducer producer = session.createProducer(queue);
-        for(int i = 0; i < 3; i ++){
-            Message message = session.createTextMessage("hello world!");
-            producer.send(message);
-        }
-        producer.close();
-        session.close();
-        conn.close();
-    }
-
-    public void createConsumer() throws Exception{
-        ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(url);
-        Connection conn = factory.createConnection();
-        conn.start();
-        Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        Queue queue = session.createQueue(queue_name);
-        MessageConsumer consumer = session.createConsumer(queue);
-        while(true){
-            TextMessage text = (TextMessage) consumer.receive();
-            if(null != text){
-                System.out.println("consumer1 text:" + text.getText());
-            } else {
-                break;
-            }
-        }
-        consumer.close();
-        session.close();
-        conn.close();
-    }
-
-    public void createConsumerListen() throws Exception{
-        ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(url);
-        Connection conn = factory.createConnection();
-        conn.start();
-        Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        Queue queue = session.createQueue(queue_name);
-        MessageConsumer consumer = session.createConsumer(queue);
-
-        consumer.setMessageListener(new MessageListener() {
-            @Override
-            public void onMessage(Message message) {
-                if(null != message && message instanceof TextMessage){
-                    TextMessage text = (TextMessage) message;
-                    if(null != text){
-                        try {
-                            System.out.println("consumer2 text:" + text.getText());
-                        } catch (JMSException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        });
-        System.in.read();
-        consumer.close();
-        session.close();
-        conn.close();
-    }
+//    public void createProducer() throws Exception{
+//        //创建连接工厂
+//        ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(url);
+//        //创建连接
+//        Connection conn = factory.createConnection();
+//        conn.start();
+//        //创建会话
+//        Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
+//        //创建目的地
+//        Queue queue = session.createQueue(queue_name);
+//        MessageProducer producer = session.createProducer(queue);
+//        for(int i = 0; i < 3; i ++){
+//            Message message = session.createTextMessage("hello world!");
+//            producer.send(message);
+//        }
+//        producer.close();
+//        session.close();
+//        conn.close();
+//    }
+//
+//    public void createConsumer() throws Exception{
+//        ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(url);
+//        Connection conn = factory.createConnection();
+//        conn.start();
+//        Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
+//        Queue queue = session.createQueue(queue_name);
+//        MessageConsumer consumer = session.createConsumer(queue);
+//        while(true){
+//            TextMessage text = (TextMessage) consumer.receive();
+//            if(null != text){
+//                System.out.println("consumer1 text:" + text.getText());
+//            } else {
+//                break;
+//            }
+//        }
+//        consumer.close();
+//        session.close();
+//        conn.close();
+//    }
+//
+//    public void createConsumerListen() throws Exception{
+//        ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(url);
+//        Connection conn = factory.createConnection();
+//        conn.start();
+//        Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
+//        Queue queue = session.createQueue(queue_name);
+//        MessageConsumer consumer = session.createConsumer(queue);
+//
+//        consumer.setMessageListener(new MessageListener() {
+//            @Override
+//            public void onMessage(Message message) {
+//                if(null != message && message instanceof TextMessage){
+//                    TextMessage text = (TextMessage) message;
+//                    if(null != text){
+//                        try {
+//                            System.out.println("consumer2 text:" + text.getText());
+//                        } catch (JMSException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
+//            }
+//        });
+//        System.in.read();
+//        consumer.close();
+//        session.close();
+//        conn.close();
+//    }
     public static void main(String[] args)  throws Exception{
 
         //new MqDemo().createProducer();
-        new MqDemo().createConsumer();
-        new MqDemo().createConsumerListen();
-
-        Thread.sleep(1000L);
-        new MqDemo().createProducer();
+//        new MqDemo().createConsumer();
+//        new MqDemo().createConsumerListen();
+//
+//        Thread.sleep(1000L);
+//        new MqDemo().createProducer();
 
     }
 
@@ -101,7 +98,7 @@ public class MqDemo {
      *  2）用户下单成功调用库存系统减库存，可使用队列。因为如果下单时库存系统不可用，那会失败，
      *  如果使用队列，遇到库存系统不可用时不会出问题，库存系统重启后再消费消息完成库存扣减即可。
      *  3）流量削锋，比如秒杀活动，一般会因为流量过大，导致应用挂掉。为解决这个问题，可以在应用
-     *  前端假如消息队列，控制活动人数，缓解短时间内高流量压垮应用。
+     *  前端加入消息队列，控制活动人数，缓解短时间内高流量压垮应用。
      *  4）日志处理
      *  5）聊天室通讯
      */

@@ -1,8 +1,5 @@
 package com.xulu.review.design;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * 设计模式
  *
@@ -12,7 +9,6 @@ import org.slf4j.LoggerFactory;
  **/
 public class DesignPatternDemo {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 1。设计模式的7大原则是什么？
