@@ -1,5 +1,8 @@
 package com.xulu.review.thread;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * @author xulu
  * @date 2019/5/10
@@ -21,4 +24,18 @@ public class ThreadPoolDemo {
      * 6.ThreadFactory:线程工厂，用来创建线程
      * 7.RejectedExecutionHandler：队列已满，并且任务量大于最大线程的异常处理策略
      */
+
+    public static void main(String[] args) {
+        ExecutorService pool = Executors.newFixedThreadPool(5);//一池5个处理线程
+
+        try{
+            pool.execute(()->{
+
+            });
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+
+        }
+    }
 }
