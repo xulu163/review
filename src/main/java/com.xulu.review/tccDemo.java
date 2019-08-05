@@ -1,5 +1,7 @@
 package com.xulu.review;
 
+import com.sun.org.apache.xerces.internal.dom.PSVIAttrNSImpl;
+
 /**
  * @author xulu  E-mail:java_xul@163.com
  * @version 1.0
@@ -29,4 +31,10 @@ public class tccDemo {
      *
      *
      */
+
+    public static void main(String[] args) {
+        Integer a = 5 ;
+        Integer b = 400;
+        System.out.println((a > b));
+    }
 }
