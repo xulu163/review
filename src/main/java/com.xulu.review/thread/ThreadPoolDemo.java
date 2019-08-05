@@ -26,7 +26,7 @@ public class ThreadPoolDemo {
      */
 
     public static void main(String[] args) {
-        ExecutorService pool = Executors.newCachedThreadPool(5);//一池5个处理线程
+        ExecutorService pool = Executors.newFixedThreadPool(5);//一池5个处理线程
 
         try{
             pool.execute(()->{
